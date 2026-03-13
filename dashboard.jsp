@@ -6,7 +6,7 @@
     <title>Course Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, ${username}!</h1>
+    <h1>Welcome, ${loggedInUser}!</h1>
     <a href="LogoutServlet">Logout</a>
     
     <h2>Available Courses</h2>
@@ -18,22 +18,22 @@
             <th>Action</th>
         </tr>
         <%-- Will be populated by DashboardServlet --%>
-        <c:forEach items="${courses}" var="course">
-            <tr>
-                <td>${course.id}</td>
-                <td>${course.name}</td>
-                <td>${course.instructor}</td>
-                <td><a href="EnrollServlet?courseId=${course.id}">Enroll</a></td>
-            </tr>
-        </c:forEach>
+        <c:forEach items="${courseList}" var="course">
+    	<tr>
+        	<td>${course.courseId}</td>
+        	<td>${course.courseName}</td>
+        	<td>${course.instructor}</td>
+        	<td><a href="EnrollServlet?courseId=${course.courseId}">Enroll</a></td>
+    	</tr>
+		</c:forEach>
     </table>
 
     <h2>Your Enrolled Courses</h2>
     <ul>
         <%-- Will display enrolled courses from session --%>
-        <c:forEach items="${enrolledCourses}" var="course">
-            <li>${course.name} (${course.id})</li>
-        </c:forEach>
+        <c:forEach items="${enrolledCourses}" var="enrolledId">
+    		<li>Enrolled in Course ID: ${enrolledId}</li>
+		</c:forEach>
     </ul>
 </body>
 </html>
